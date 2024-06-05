@@ -114,6 +114,7 @@
     catppuccin-sddm
     easyeffects
     distrobox
+    bat
     # languages and build tools
     rustup
     clang
