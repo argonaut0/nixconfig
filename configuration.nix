@@ -7,12 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./vfio.nix
-      ./hardware-configuration.nix
-      ./cli.nix
+      ./computer.nix
     ];
-
-  vfio.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -26,10 +22,7 @@
     "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
   ];
 
-  # Enable ntfs-3g - https://wiki.nixos.org/wiki/NTFS
-  boot.supportedFilesystems = [ "ntfs" ];
 
-  networking.hostName = "computer"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -61,7 +54,13 @@
       User = "user";
     };
   };
+  # KDE partition manager
   programs.partition-manager.enable = true;
+  # fix theming in GTK applications with plasma https://github.com/NixOS/nixpkgs/issues/180720
+  # plasma calls dconf to sync GTK theme settings when the settings are changed in plasma
+  # so after enabling this the themes need to be set again.
+  programs.dconf.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   
 
@@ -83,6 +82,7 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  users.defaultUserShell = pkgs.bash;
   # Define a user account
   users.users.user = {
     isNormalUser = true;
@@ -92,9 +92,8 @@
       lazygit
       kitty
       gh # github cli
-      chromium
-      thunderbird
       vlc
+      thunderbird
       # discord https://github.com/Vencord/Vesktop
       vesktop
       obsidian
@@ -106,7 +105,6 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    fira-code-nerdfont
     vim
     vscode.fhs
     kdePackages.sddm-kcm
@@ -128,64 +126,28 @@
     wl-clipboard
   ];
 
-  # Enable virtualization
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+  fonts.packages = with pkgs; [
+    fira-code-nerdfont
+    noto-fonts-cjk
+    noto-fonts-emoji
+  ];
 
-  # Enable Docker - https://nixos.wiki/wiki/Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = true;
-  users.extraGroups.docker.members = [ "user" ];
 
   ## Programs
 
   # global shell setup
-  #programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.bash;
   programs.tmux.enable = true;
   programs.starship.enable = true;
 
-  # use the firefox program instead of package
-  # to enable plasma-browser-integration (config installed by plasma)
-  programs.firefox.enable = true;
-
-  # fix theming in GTK applications with plasma https://github.com/NixOS/nixpkgs/issues/180720
-  # plasma calls dconf to sync GTK theme settings when the settings are changed in plasma
-  # so after enabling this the themes need to be set again.
-  programs.dconf.enable = true;
-
-  programs.wireshark.enable = true;
-  programs.wireshark.package = pkgs.wireshark;
-  # https://github.com/quexten/goldwarden
-  programs.goldwarden.enable = true;
-  programs.goldwarden.useSshAgent = true;
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
   programs.neovim.withRuby = true;
   programs.neovim.withPython3 = true;
   programs.neovim.withNodeJs = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; 
-  };
 
-  # Services
-
-  # tailscale
-  # https://github.com/tailscale/tailscale/issues/4254
-  # https://nixos.wiki/wiki/Tailscale
-  services.resolved.enable = true;
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "client";
-  
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  services.syncthing.enable = true;
-  services.syncthing.user = "user";
-  services.syncthing.dataDir = "/home/user";
-  services.syncthing.configDir = "/home/user/.config/syncthing";
 
   # Enable AutoUpgrades - nixos-upgrade.service
   system.autoUpgrade.enable = true;

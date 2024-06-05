@@ -6,11 +6,9 @@ gpuIDs = [
   "10de:0fb9" # Audio
 ];
 in { pkgs, lib, config, ... }: {
-  options.vfio.enable = with lib;
-  mkEnableOption "Configure the machine for VFIO";
+  options.vfio.enable = lib.mkEnableOption "Configure the machine for VFIO";
 
-  config = let cfg = config.vfio;
-  in {
+  config = {
     # force load vfio drivers first
     boot.initrd.kernelModules = lib.mkOrder 50 [
         "vfio_pci"
@@ -21,7 +19,7 @@ in { pkgs, lib, config, ... }: {
     boot.kernelParams = [
       # enable IOMMU
       "amd_iommu=on"
-    ] ++ lib.optional cfg.enable ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
+    ] ++ lib.optional config.vfio.enable ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
 
     # blacklist nvidia 1050 gpu for vfio - also nouveau crashes kernel sometimes when compiling apex legends shaders.
     boot.blacklistedKernelModules = [ "nouveau nvidia nvidia_drm nvidia_modeset" ];
