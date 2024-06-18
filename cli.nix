@@ -9,6 +9,10 @@
     wget
     zip
     unzip
+    kubectl
+    k9s
+    helm
+    tree
   ];
 }
 

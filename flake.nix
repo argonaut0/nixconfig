@@ -2,8 +2,7 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    # NixOS official package source, using the nixos-unstable branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     # Add https://lix.systems
     lix = {

@@ -42,6 +42,7 @@
   # Enable sddm in Wayland and plasma6 https://nixos.wiki/wiki/KDE
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.theme = "catppuccin-mocha";
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
   # Allow chromium/electron to use wayland - https://nixos.wiki/wiki/Wayland
@@ -62,7 +63,16 @@
   programs.dconf.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  
+
+  # https://nix.dev/guides/faq#how-to-run-non-nix-executables
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+  ]; 
+
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -93,6 +103,7 @@
       kitty
       gh # github cli
       vlc
+      packer
       thunderbird
       # discord https://github.com/Vencord/Vesktop
       vesktop
@@ -100,6 +111,7 @@
       sqlitebrowser
       webex
       prismlauncher
+      libreoffice-qt6-fresh
     ];
   };
 
@@ -108,6 +120,7 @@
     vim
     vscode.fhs
     kdePackages.sddm-kcm
+    # end
     catppuccin
     catppuccin-kde
     catppuccin-gtk
@@ -115,6 +128,10 @@
     easyeffects
     distrobox
     bat
+    bottles
+    wineWowPackages.stable
+    winetricks
+    wineWowPackages.waylandFull
     # languages and build tools
     rustup
     clang
