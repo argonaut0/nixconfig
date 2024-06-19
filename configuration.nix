@@ -37,6 +37,24 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  i18n.inputMethod.enabled = "fcitx5";
+  # https://wiki.archlinux.org/title/Input_method
+  # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Applications
+  i18n.inputMethod.fcitx5.plasma6Support = true;
+  # unsets QT_IM_MODULE and other env.
+  i18n.inputMethod.fcitx5.waylandFrontend = true;
+  # https://discourse.nixos.org/t/fcitx5-rime-pinyin-not-working-on-hyprland-sway/42507/3
+  i18n.inputMethod.fcitx5.addons = [
+    pkgs.kdePackages.fcitx5-chinese-addons
+    pkgs.fcitx5-rime
+    # rime dep rime-data
+    pkgs.brise
+    pkgs.rime-data
+    pkgs.librime
+    pkgs.fcitx5-gtk
+    pkgs.fcitx5-configtool
+  ];
+
   # Enable the windowing system.
   programs.xwayland.enable = true;
   # Enable sddm in Wayland and plasma6 https://nixos.wiki/wiki/KDE
@@ -120,6 +138,8 @@
     vim
     vscode.fhs
     kdePackages.sddm-kcm
+    kdePackages.filelight
+    kdePackages.yakuake
     # end
     catppuccin
     catppuccin-kde
@@ -154,6 +174,7 @@
   ## Programs
 
   # global shell setup
+  # https://nixos.wiki/wiki/Tmux
   programs.tmux.enable = true;
   programs.starship.enable = true;
 

@@ -12,6 +12,8 @@
     kubectl
     k9s
     helm
+    # https://tofuutils.github.io/tenv/
+    tenv
     tree
   ];
 }
