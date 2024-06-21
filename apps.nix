@@ -13,10 +13,6 @@
   programs.wireshark.package = pkgs.wireshark;
 
 
-  # https://github.com/quexten/goldwarden
-  programs.goldwarden.enable = true;
-  programs.goldwarden.useSshAgent = true;
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; 
