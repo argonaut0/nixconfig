@@ -10,8 +10,9 @@
     zip
     unzip
     kubectl
+    kubectl-node-shell
     k9s
-    helm
+    kubernetes-helm
     # https://tofuutils.github.io/tenv/
     tenv
     tree
