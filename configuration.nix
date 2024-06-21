@@ -162,7 +162,9 @@
     ripgrep
     stylua
     wl-clipboard
+    fzf
   ];
+  programs.fzf.fuzzyCompletion = true;
 
   fonts.packages = with pkgs; [
     fira-code-nerdfont
