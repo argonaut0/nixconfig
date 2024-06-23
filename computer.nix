@@ -6,6 +6,7 @@
     [ # Include the results of the hardware scan.
       ./computer-hardware-configuration.nix
       ./configuration.nix
+      ./apcupsd.nix
     ];
 
   vfio.enable = true;
