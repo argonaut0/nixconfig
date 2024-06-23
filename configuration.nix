@@ -84,6 +84,23 @@
   # so after enabling this the themes need to be set again.
   programs.dconf.enable = true;
 
+  environment.etc."xdg/kdeglobals" = {
+    text = ''
+      [General]
+      ColorScheme[$i]=CatppuccinFrappeBlue
+      XftAntialias[$i]=true
+      XftHintStyle[$i]=hintfull
+      XftSubPixel[$i]=rgb
+      fixed=FiraCode Nerd Font Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+      [Icons]
+      Theme[$i]=breeze-dark
+
+      [KDE]
+      LookAndFeelPackage[$i]=Catppuccin-Frappe-Blue
+    '';
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # https://nix.dev/guides/faq#how-to-run-non-nix-executables
