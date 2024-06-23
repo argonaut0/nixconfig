@@ -23,7 +23,17 @@
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
-        ./configuration.nix
+        ./computer.nix
+        # lix.systems
+        lix-module.nixosModules.default
+      ];
+    };
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        # Import the previous configuration.nix we used,
+        # so the old configuration file still takes effect
+        ./laptop.nix
         # lix.systems
         lix-module.nixosModules.default
       ];

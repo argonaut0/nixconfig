@@ -7,7 +7,11 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./computer.nix
+      ./syncthing.nix
+      ./tailscale.nix
+      ./apps.nix
+      ./virt.nix
+      ./cli.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

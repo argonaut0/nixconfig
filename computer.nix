@@ -5,11 +5,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./computer-hardware-configuration.nix
-      ./syncthing.nix
-      ./tailscale.nix
-      ./apps.nix
-      ./virt.nix
-      ./cli.nix
+      ./configuration.nix
     ];
 
   vfio.enable = true;
