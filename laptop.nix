@@ -10,5 +10,5 @@
 
   networking.hostName = "laptop"; # Define your hostname.
   services.fprintd.enable = true;
-  services.fwupd.enabel = true;
+  services.fwupd.enable = true;
 }
