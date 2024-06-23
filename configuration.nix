@@ -101,6 +101,18 @@
     '';
   };
 
+  environment.etc."xdg/kwinrc" = {
+    text = ''
+      [Plugins]
+      cubeEnabled=true
+      wobblywindowsEnabled=true
+
+      [org.kde.kdecoration2]
+      library[$i]=org.kde.breeze
+      theme[$i]=Breeze
+    '';
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # https://nix.dev/guides/faq#how-to-run-non-nix-executables
