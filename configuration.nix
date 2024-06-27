@@ -61,13 +61,13 @@
 
   # Enable the windowing system.
   programs.xwayland.enable = true;
-  # Enable sddm in Wayland and plasma6 https://nixos.wiki/wiki/KDE
+  # Enable sddm in Wayland and plasma6 https://wiki.nixos.org/wiki/KDE
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.theme = "catppuccin-mocha";
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
-  # Allow chromium/electron to use wayland - https://nixos.wiki/wiki/Wayland
+  # Allow chromium/electron to use wayland - https://wiki.nixos.org/wiki/Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Autologin sddm
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/display-managers/sddm.nix
@@ -130,7 +130,7 @@
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable sound.
-  # https://nixos.wiki/wiki/PipeWire
+  # https://wiki.nixos.org/wiki/PipeWire
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -209,7 +209,7 @@
   ## Programs
 
   # global shell setup
-  # https://nixos.wiki/wiki/Tmux
+  # https://wiki.nixos.org/wiki/Tmux
   programs.tmux.enable = true;
   programs.starship.enable = true;
 

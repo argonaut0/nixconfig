@@ -9,7 +9,7 @@
     ];
 
 
-  # https://nixos.wiki/wiki/Linux_kernel
+  # https://wiki.nixos.org/wiki/Linux_kernel
   boot.kernelPackages = pkgs.linuxPackages_6_9;
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.kernelModules = [ "kvm-amd" ];
@@ -19,7 +19,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use AMDGPU https://nixos.wiki/wiki/AMD_GPU
+  # Use AMDGPU https://wiki.nixos.org/wiki/AMD_GPU
   boot.initrd.kernelModules = [ "amdgpu" ];
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
