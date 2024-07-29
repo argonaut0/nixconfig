@@ -148,7 +148,7 @@
   users.users.user = {
     isNormalUser = true;
     useDefaultShell = true;
-    extraGroups = [ "wheel" "libvirtd" "wireshark" ]; 
+    extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" ]; 
     packages = with pkgs; [
       lazygit
       kitty
@@ -159,10 +159,12 @@
       # discord https://github.com/Vencord/Vesktop
       vesktop
       obsidian
+      calibre
       sqlitebrowser
       webex
       prismlauncher
       libreoffice-qt6-fresh
+      chromium
     ];
   };
 
@@ -188,6 +190,7 @@
     # languages and build tools
     rustup
     clang
+    gcc
     go
     gnumake
     git
