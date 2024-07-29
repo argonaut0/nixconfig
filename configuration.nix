@@ -16,16 +16,6 @@
   console.earlySetup = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nix.settings.extra-substituters = [
-    # binary sources for lix
-    "https://cache.lix.systems"
-  ];
-
-  nix.settings.trusted-public-keys = [
-    # binary sources for lix
-    "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-  ];
-
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
