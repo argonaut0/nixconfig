@@ -215,6 +215,10 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.cups-pdf.enable = true;
+
+  services.avahi.enable = true;
+  services.avahi.nssmdns4 = true;
 
   # Enable AutoUpgrades - nixos-upgrade.service
   system.autoUpgrade.enable = true;
