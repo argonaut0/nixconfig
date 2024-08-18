@@ -31,23 +31,28 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.inputMethod.enabled = "fcitx5";
-  # https://wiki.archlinux.org/title/Input_method
-  # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Applications
-  i18n.inputMethod.fcitx5.plasma6Support = true;
-  # unsets QT_IM_MODULE and other env.
-  i18n.inputMethod.fcitx5.waylandFrontend = true;
-  # https://discourse.nixos.org/t/fcitx5-rime-pinyin-not-working-on-hyprland-sway/42507/3
-  i18n.inputMethod.fcitx5.addons = [
-    pkgs.kdePackages.fcitx5-chinese-addons
-    pkgs.fcitx5-rime
-    # rime dep rime-data
-    pkgs.brise
-    pkgs.rime-data
-    pkgs.librime
-    pkgs.fcitx5-gtk
-    pkgs.fcitx5-configtool
-  ];
+  i18n.inputMethod = {
+    # TO ENABLE IN PLASMA SETTINGS:
+    # System Settings -> Virtual Keyboard -> select Fcitx5
+    # System Settings -> Input Method -> Add Input Method...
+    # DO NOT SELECT "Fcitx5 Wayland Launcher" it will not work -> causes "Rime (not available)".
+    enabled = "fcitx5";
+    # https://wiki.archlinux.org/title/Input_method
+    # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Applications
+    fcitx5.plasma6Support = true;
+    # unsets QT_IM_MODULE and other env.
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+        rime-data
+        #brise
+        fcitx5-mozc
+        librime
+        fcitx5-rime
+        fcitx5-configtool
+        fcitx5-chinese-addons
+      ];
+  };
+
 
   # Enable the windowing system.
   programs.xwayland.enable = true;
@@ -221,10 +226,9 @@
   services.avahi.nssmdns4 = true;
 
   # Enable AutoUpgrades - nixos-upgrade.service
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
   system.autoUpgrade.allowReboot = false;
 
   # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "23.11"; 
 }
-
