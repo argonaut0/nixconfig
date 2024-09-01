@@ -16,6 +16,7 @@
     # https://tofuutils.github.io/tenv/
     tenv
     tree
+    devenv
   ];
 }
 

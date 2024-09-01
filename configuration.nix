@@ -160,6 +160,7 @@
       prismlauncher
       libreoffice-qt6-fresh
       chromium
+      slack
     ];
   };
 
