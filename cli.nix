@@ -17,6 +17,7 @@
     tenv
     tree
     devenv
+    sops
   ];
 }
 
