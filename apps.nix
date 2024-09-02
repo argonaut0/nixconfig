@@ -12,7 +12,7 @@
   programs.wireshark.package = pkgs.wireshark;
 
   programs.steam = {
-    enable = true;
+    enable = false;
     remotePlay.openFirewall = true; 
     dedicatedServer.openFirewall = true;
     gamescopeSession = {
