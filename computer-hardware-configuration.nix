@@ -7,7 +7,7 @@
 
 
   # https://nixos.wiki/wiki/Linux_kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_9;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
