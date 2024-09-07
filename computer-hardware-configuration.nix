@@ -35,11 +35,6 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/ssddata" =
-    { device = "/dev/disk/by-label/SSDDATA";
-      fsType = "xfs";
-    };
-
   swapDevices = [ ];
 
 
