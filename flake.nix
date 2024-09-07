@@ -36,6 +36,11 @@
     nixosConfigurations.macbook = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
+	{
+	  nixpkgs.overlays = [
+	    (import ./apple-silicon/widevine-overlay.nix)
+	  ];
+	}
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
         ./macbook.nix
