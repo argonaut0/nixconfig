@@ -10,7 +10,6 @@
       ./syncthing.nix
       ./tailscale.nix
       ./apps.nix
-      ./virt.nix
       ./cli.nix
     ];
   console.earlySetup = true;
@@ -230,6 +229,4 @@
   system.autoUpgrade.enable = false;
   system.autoUpgrade.allowReboot = false;
 
-  # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
-  system.stateVersion = "23.11"; 
 }
