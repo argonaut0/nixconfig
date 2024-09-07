@@ -145,21 +145,21 @@
     extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" ]; 
     packages = with pkgs; [
       lazygit
-      kitty
+      #kitty
       gh # github cli
-      vlc
-      packer
-      thunderbird
+      #vlc
+      #packer
+      #thunderbird
       # discord https://github.com/Vencord/Vesktop
       vesktop
       obsidian
       calibre
       sqlitebrowser
-      webex
-      prismlauncher
-      libreoffice-qt6-fresh
-      chromium
-      slack
+      #webex
+      #prismlauncher
+      #libreoffice-qt6-fresh
+      #chromium
+      #slack
     ];
   };
 
@@ -176,12 +176,9 @@
     catppuccin-gtk
     catppuccin-sddm
     easyeffects
-    distrobox
+    #distrobox
     bat
-    bottles
-    wineWowPackages.stable
-    winetricks
-    wineWowPackages.waylandFull
+    #bottles
     # languages and build tools
     rustup
     clang

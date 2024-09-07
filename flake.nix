@@ -2,7 +2,7 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs";
 
     # Add https://lix.systems
     lix-module = {
@@ -29,6 +29,16 @@
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
         ./laptop.nix
+        # lix.systems
+        lix-module.nixosModules.default
+      ];
+    };
+    nixosConfigurations.macbook = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        # Import the previous configuration.nix we used,
+        # so the old configuration file still takes effect
+        ./macbook.nix
         # lix.systems
         lix-module.nixosModules.default
       ];
