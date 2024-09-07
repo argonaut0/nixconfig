@@ -38,5 +38,4 @@
     };
   };
   programs.gamescope.enable = true;
-  programs.virt-manager.enable = true;
 }
