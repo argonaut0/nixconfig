@@ -35,7 +35,8 @@
     # System Settings -> Virtual Keyboard -> select Fcitx5
     # System Settings -> Input Method -> Add Input Method...
     # DO NOT SELECT "Fcitx5 Wayland Launcher" it will not work -> causes "Rime (not available)".
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     # https://wiki.archlinux.org/title/Input_method
     # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Applications
     fcitx5.plasma6Support = true;
@@ -142,7 +143,7 @@
   users.users.user = {
     isNormalUser = true;
     useDefaultShell = true;
-    extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" ]; 
+    extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" "networkmanager" ]; 
     packages = with pkgs; [
       lazygit
       #kitty
@@ -166,6 +167,7 @@
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
     vim
+    nix-search-cli
     vscode.fhs
     kdePackages.sddm-kcm
     kdePackages.filelight

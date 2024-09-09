@@ -34,8 +34,9 @@
   };
   hardware.bluetooth.enable = true;
 
+  services.power-profiles-daemon.enable = true;
   powerManagement.enable = true;
   powerManagement.powertop.enable = true;
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 }
 
