@@ -148,7 +148,7 @@
       lazygit
       #kitty
       gh # github cli
-      #vlc
+      vlc
       #packer
       #thunderbird
       # discord https://github.com/Vencord/Vesktop
@@ -172,6 +172,7 @@
     kdePackages.sddm-kcm
     kdePackages.filelight
     kdePackages.yakuake
+    kdePackages.qtimageformats # for dolphin image previews
     # end
     catppuccin
     catppuccin-kde
