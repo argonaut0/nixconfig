@@ -14,6 +14,7 @@
     ];
   console.earlySetup = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "@wheel" ];
 
 
   # Pick only one of the below networking options.
@@ -117,6 +118,39 @@
     # here, NOT in environment.systemPackages
   ]; 
 
+  programs.nix-index.enable = true;
+  programs.command-not-found.enable = false;
+
+  programs.ccache.enable = true;
+  nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
+  nixpkgs.overlays = [
+    # https://nixos.wiki/wiki/CCache
+    (self: super: {
+      ccacheWrapper = super.ccacheWrapper.override {
+        extraConfig = ''
+        export CCACHE_COMPRESS=1
+        export CCACHE_DIR="${config.programs.ccache.cacheDir}"
+        export CCACHE_UMASK=007
+        if [ ! -d "$CCACHE_DIR" ]; then
+          echo "====="
+          echo "Directory '$CCACHE_DIR' does not exist"
+          echo "Please create it with:"
+          echo "  sudo mkdir -m0770 '$CCACHE_DIR'"
+          echo "  sudo chown root:nixbld '$CCACHE_DIR'"
+          echo "====="
+          exit 1
+        fi
+        if [ ! -w "$CCACHE_DIR" ]; then
+          echo "====="
+          echo "Directory '$CCACHE_DIR' is not accessible for user $(whoami)"
+          echo "Please verify its access permissions"
+          echo "====="
+          exit 1
+        fi
+        '';
+      };
+    })
+  ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
@@ -168,6 +202,9 @@
   environment.systemPackages = with pkgs; [
     vim
     nix-search-cli
+    nixpkgs-fmt
+    nixpkgs-lint
+    nixpkgs-manual
     vscode.fhs
     kdePackages.sddm-kcm
     kdePackages.filelight
