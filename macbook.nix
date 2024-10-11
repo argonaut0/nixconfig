@@ -33,6 +33,9 @@
     setupAsahiSound = true;
   };
   hardware.bluetooth.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = true;
+  users.extraGroups.docker.members = [ "user" ];
 
   #services.power-profiles-daemon.enable = true;
   #powerManagement.enable = true;

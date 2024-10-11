@@ -21,6 +21,11 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  # fuck you systemd broken ass crap
+  # https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.systemd-udevd.restartIfChanged = false;
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
   # Set your time zone.
   time.timeZone = "America/Vancouver";
 
@@ -36,8 +41,7 @@
     # System Settings -> Virtual Keyboard -> select Fcitx5
     # System Settings -> Input Method -> Add Input Method...
     # DO NOT SELECT "Fcitx5 Wayland Launcher" it will not work -> causes "Rime (not available)".
-    enable = true;
-    type = "fcitx5";
+    enabled = "fcitx5";
     # https://wiki.archlinux.org/title/Input_method
     # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Applications
     fcitx5.plasma6Support = true;
@@ -172,6 +176,13 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  programs.xonsh.enable = true;
+  programs.xonsh.config = "
+    $XONSH_APPEND_NEWLINE = False
+    $COMPLETIONS_CONFIRM = False
+    execx($(starship init xonsh))
+    ";
+
   users.defaultUserShell = pkgs.bash;
   # Define a user account
   users.users.user = {
@@ -190,12 +201,25 @@
       obsidian
       calibre
       sqlitebrowser
+      reaper
+      ardour
+      musescore
+      kdenlive
       #webex
+      rawtherapee
       #prismlauncher
-      #libreoffice-qt6-fresh
+      libreoffice-qt6
       #chromium
       #slack
     ];
+  };
+
+  programs.direnv = {
+    enable = true;
+    loadInNixShell = true;
+    nix-direnv = {
+      enable = true;
+    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -205,12 +229,15 @@
     nixpkgs-fmt
     nixpkgs-lint
     nixpkgs-manual
+    #devenv
+    starship
     vscode.fhs
     kdePackages.sddm-kcm
     kdePackages.filelight
     kdePackages.yakuake
     kdePackages.qtimageformats # for dolphin image previews
     # end
+    activitywatch
     catppuccin
     catppuccin-kde
     catppuccin-gtk
@@ -223,7 +250,9 @@
     rustup
     clang
     gcc
+    gleam
     go
+    erlang
     gnumake
     git
     # for neovim

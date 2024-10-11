@@ -2,6 +2,7 @@
   description = "A simple NixOS flake";
 
   inputs = {
+    # https://nix.dev/manual/nix/2.18/command-ref/new-cli/nix3-flake.html#url-like-syntax
     nixpkgs.url = "github:nixos/nixpkgs";
 
     # Add https://lix.systems
@@ -36,13 +37,12 @@
     nixosConfigurations.macbook = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
+        # Firefox and Chrome DRM fix
 	{
 	  nixpkgs.overlays = [
 	    (import ./apple-silicon/widevine-overlay.nix)
 	  ];
 	}
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
         ./macbook.nix
         # lix.systems
         lix-module.nixosModules.default
