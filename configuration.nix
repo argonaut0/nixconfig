@@ -27,7 +27,7 @@
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
   # Set your time zone.
-  time.timeZone = "America/Vancouver";
+  time.timeZone = "America/Toronto";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
