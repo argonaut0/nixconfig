@@ -19,6 +19,7 @@
     #devenv
     sops
     pipenv
+    file
   ];
 }
 
