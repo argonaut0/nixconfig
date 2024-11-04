@@ -265,7 +265,7 @@
 
   fonts.packages = with pkgs; [
     fira-code-nerdfont
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
   ];
 
