@@ -5,13 +5,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./syncthing.nix
-      ./tailscale.nix
-      ./apps.nix
-      ./cli.nix
-    ];
   console.earlySetup = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "@wheel" ];
@@ -230,7 +223,7 @@
     nixpkgs-fmt
     nixpkgs-lint
     nixpkgs-manual
-    #devenv
+    devenv
     starship
     vscode.fhs
     kdePackages.sddm-kcm
@@ -244,9 +237,25 @@
     catppuccin-gtk
     catppuccin-sddm
     easyeffects
-    #distrobox
+    distrobox
     bat
-    #bottles
+    # misc tools
+    pciutils
+    dig
+    htop
+    wget
+    zip
+    unzip
+    kubectl
+    kubectl-node-shell
+    k9s
+    kubernetes-helm
+    # https://tofuutils.github.io/tenv/
+    tenv
+    tree
+    sops
+    pipenv
+    file
     # languages and build tools
     rustup
     clang
@@ -256,6 +265,7 @@
     erlang
     gnumake
     git
+    exfatprogs
     # for neovim
     ripgrep
     stylua
@@ -273,11 +283,36 @@
 
   ## Programs
 
+  # Syncthing
+  services.syncthing.enable = true;
+  services.syncthing.user = "user";
+  services.syncthing.dataDir = "/home/user";
+  services.syncthing.configDir = "/home/user/.config/syncthing";
+
+  # tailscale
+  # https://github.com/tailscale/tailscale/issues/4254
+  # https://nixos.wiki/wiki/Tailscale
+  services.resolved.enable = true;
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+
+  # use the Firefox program instead of package
+  # to enable plasma-browser-integration (config installed by plasma)
+  programs.firefox.enable = true;
+  programs.firefox.preferences = {
+    "widget.use-xdg-desktop-portal.file-picker" = 1;
+  };
+
+  # Wireshark
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
+
   # global shell setup
   # https://nixos.wiki/wiki/Tmux
   programs.tmux.enable = true;
   programs.starship.enable = true;
 
+  # Neovim owo
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
   programs.neovim.withRuby = true;
