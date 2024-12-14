@@ -3,7 +3,7 @@
 
   inputs = {
     # https://nix.dev/manual/nix/2.18/command-ref/new-cli/nix3-flake.html#url-like-syntax
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Add https://lix.systems
     lix = {
@@ -44,11 +44,16 @@
       system = "aarch64-linux";
       modules = [
         # Firefox and Chrome DRM fix
-	{
-	  nixpkgs.overlays = [
-	    (import ./apple-silicon/widevine-overlay.nix)
-	  ];
-	}
+        {
+          nixpkgs.overlays = [
+            (import ./apple-silicon/widevine-overlay.nix)
+            #(final: prev: let
+            #    nixpkgs-asahi = import inputs.apple-silicon.inputs.nixpkgs {};
+            #  in {
+            #    linux-asahi = nixpkgs-asahi.callPackage "${inputs.apple-silicon}/apple-silicon-support/packages/linux-asahi" { };
+            #})
+          ];
+        }
         ./macbook.nix
         # lix.systems
         lix-module.nixosModules.default
