@@ -11,8 +11,11 @@
 
 
   # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default
+  # wpa_supplicant broken 2.11 + does not support wpa3 on broadcom
+  # https://bugzilla.redhat.com/show_bug.cgi?id=2302577
+  networking.networkmanager.wifi.backend = "iwd";
+
 
   # fuck you systemd broken ass crap
   # https://github.com/NixOS/nixpkgs/issues/180175
