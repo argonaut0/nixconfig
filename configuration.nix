@@ -201,7 +201,7 @@
       kdenlive
       #webex
       rawtherapee
-      #prismlauncher
+      prismlauncher
       libreoffice-qt6
       #chromium
       #slack
@@ -262,6 +262,9 @@
     gcc
     gleam
     go
+    nodejs
+    deno
+    bun
     erlang
     gnumake
     git
