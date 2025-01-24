@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./macbook-hardware-configuration.nix
-      ./apple-silicon-support
       ./configuration.nix
     ];
 

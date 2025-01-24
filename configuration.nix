@@ -222,6 +222,7 @@
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
     vim
+    sqlite
     nix-search-cli
     nixpkgs-fmt
     nixpkgs-lint
@@ -288,6 +289,8 @@
 
 
   ## Programs
+
+  services.flatpak.enable = true;
 
   # Syncthing
   services.syncthing.enable = true;
