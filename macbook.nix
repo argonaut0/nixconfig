@@ -14,6 +14,18 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPatches = [{
+    name = "waydroid";
+    patch = null;
+    extraConfig = ''
+      ANDROID_BINDER_IPC y
+      ANDROID_BINDERFS y
+      ANDROID_BINDER_DEVICES binder,hwbinder,vndbinder
+      CONFIG_ASHMEM y
+      CONFIG_ANDROID_BINDERFS y
+      CONFIG_ANDROID_BINDER_IPC y
+    '';
+  }];
 
   networking.hostName = "macbook"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -35,6 +47,7 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
   users.extraGroups.docker.members = [ "user" ];
+  #virtualisation.waydroid.enable = true;
 
   #services.power-profiles-daemon.enable = true;
   #powerManagement.enable = true;

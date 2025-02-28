@@ -201,7 +201,7 @@
       reaper
       ardour
       musescore
-      kdenlive
+      kdePackages.kdenlive
       #webex
       rawtherapee
       prismlauncher
@@ -221,6 +221,7 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
+    kanidm
     vim
     sqlite
     nix-search-cli
@@ -230,13 +231,14 @@
     devenv
     starship
     vscode.fhs
-    kdePackages.sddm-kcm
+    kdePackages.sddm-kcm # manage sddm settings with plasma settings app
     kdePackages.filelight
-    kdePackages.yakuake
+    kdePackages.yakuake # drop down terminal
     kdePackages.qtimageformats # for dolphin image previews
     # end
     activitywatch
     catppuccin
+    catppuccin-qt5ct
     catppuccin-kde
     catppuccin-gtk
     catppuccin-sddm
@@ -262,6 +264,7 @@
     file
     # languages and build tools
     rustup
+    pkg-config
     clang
     gcc
     gleam

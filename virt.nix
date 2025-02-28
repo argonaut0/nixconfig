@@ -13,6 +13,7 @@
   virtualisation.containers.enable = true;
   virtualisation.podman.enable = true;
   virtualisation.podman.defaultNetwork.settings.dns_enabled = true;
+  virtualisation.waydroid.enable = true;
   # Enable Docker - https://nixos.wiki/wiki/Docker
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
