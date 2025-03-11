@@ -246,6 +246,8 @@
     distrobox
     bat
     # misc tools
+    inetutils
+    wireguard-tools
     pciutils
     dig
     htop
